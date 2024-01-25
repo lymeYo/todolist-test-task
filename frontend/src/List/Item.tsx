@@ -2,7 +2,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import DoneIcon from '@mui/icons-material/Done'
 import { Checkbox, IconButton, TextareaAutosize } from '@mui/material'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { getTodoStore } from '../store/TodoStore'
 
@@ -25,18 +25,18 @@ const Item = observer(({ id, completed, title, description }: ItemProps) => {
     removeTodo(id)
   }
 
-  const handleEdit = useCallback(() => {
+  const handleEdit = () => {
     const title = titleRef.current?.value ?? ''
     const description = descriptionRef.current?.value ?? ''
 
     editTodo(id, title, description, completed)
 
     setEdit(false) 
-  }, [completed])
+  }
 
-  const handleToggle = useCallback(() => {
+  const handleToggle = () => {
     editTodo(id, title, description, !completed)
-  }, [completed, title, description])
+  }
 
   useEffect(() => {
     if (isEdit) titleRef.current?.focus()

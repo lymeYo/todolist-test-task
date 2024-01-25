@@ -1,6 +1,6 @@
 import { IconButton, TextareaAutosize } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { getTodoStore } from '../../store/TodoStore'
 import { maxDescriptionLength, maxTitleLength } from '../../utils/constants'
@@ -55,7 +55,7 @@ const InputArea = observer(() => {
     handleInputsChange() //чтобы сбросить сообщение об ошибке и счетчик символов 
   }
 
-  const handleInputsChange = useCallback(() => {
+  const handleInputsChange = () => {
     if (!titleRef.current || !descriptionRef.current) return
     const titleValue = titleRef.current?.value.trim()
     const descriptionValue = descriptionRef.current?.value.trim()
@@ -74,7 +74,7 @@ const InputArea = observer(() => {
     )
 
       setErrorMessShow(false)
-  }, [isErrorMessShow])
+  }
 
   useEffect(() => {
     const keyHandler = (event: KeyboardEvent) => {
